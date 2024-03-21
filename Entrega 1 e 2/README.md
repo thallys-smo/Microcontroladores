@@ -4,6 +4,8 @@
 
 - Apresentar as respostas para as Questões de 1 a 12.
 
+ ........
+
 ## Entrega 2: 
 
 Atividade prática de uso de set de instruções e manipulação de dados em registradores e endereços de memória em microcontroladores
