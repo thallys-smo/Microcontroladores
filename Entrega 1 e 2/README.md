@@ -4,7 +4,7 @@
 
 - Apresentar as respostas para as Questões de 1 a 12.
 
- ........
+ ..............
 
 ## Entrega 2: 
 
