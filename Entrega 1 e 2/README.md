@@ -13,11 +13,13 @@ Atividade prática de uso de set de instruções e manipulação de dados em reg
 
 1 - Manipulação de dados em registradores e endereços de memória por meio de instruções de transferência de dados:
 
-```codigo comentado ...
+```
+codigo comentado ...
 ```
 
 2 - Manipulação de dados em registradores e endereços de memória por meio de instruções Aritméticas:
 
-```codigo comentado ...
+```
+codigo comentado ...
 ```
 
