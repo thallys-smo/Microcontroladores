@@ -2,7 +2,9 @@
 
 ## Entrega 1: Questões
 
-- Apresentar as respostas para as Questões de 1 a 12.
+- Apresentar as respostas para as Questões de 1 a 12. 
+ Olhar o roteiro, lá tem vários coisas
+ 
 
 ## Entrega 2: 
 
