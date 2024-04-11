@@ -257,7 +257,33 @@ END                     ; Finaliza o programa
 
 ### 4- Manipulação de dados em registradores e endereços de memória por meio de instruções de desvio incondicional e condicional:
 
-```
+``` 
+; New program starts
+    ORG 00h       ; Set origin at address 00h
+    LJMP main     ; Long jump to the main program label
+
+    ORG 33h       ; Set origin to 33h
+main:
+    CLR A         ; Clear the accumulator (ACC)
+    MOV R0, #any_value ; Move any value into register R
+
+; Block1 starts here
+BLOCK1:
+    JZ BLOCK2     ; Jump to Block2 if A is zero
+    JNZ BLOCK3    ; Jump to Block3 if A is not zero
+    NOP           ; Take time of 1 µs, represented by No Operation (NOP)
+
+; Block2 starts here
+BLOCK2:
+    MOV A, R0     ; Move the value in R0 to ACC
+    SJMP BLOCK1   ; Short jump to Block1 unconditionally
+
+; Block3 starts here
+BLOCK3:
+    DJNZ R0, BLOCK3 ; Decrement R0 and jump to Block3 if R0 is not zero
+    LJMP main      ; Long jump to Main to restart the entire operation
+
+    END            ; Close the program
 ```
 
 ### 5 – Verificar sequencialmente o conteúdo das posições de memória de 20h até 23h e incrementar um registrador com a quantidade de valores menores do que #45h contidos nestas posições de memória:
