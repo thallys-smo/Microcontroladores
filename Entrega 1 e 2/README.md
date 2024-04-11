@@ -2,11 +2,6 @@
 
 ## Entrega 1: Questões
 
-<<<<<<< HEAD
-- Apresentar as respostas para as Questões de 1 a 12. 
- Olhar o roteiro, lá tem vários coisas
- 
-=======
 ### Questão 1:
 Apresentar a definição formal de um sistema embarcado, indicando a referência primária do IEEE (Institute of Electrical and Electronics Engineers) que subsidie esta definição. Em seguida fazer uma explanação breve e objetiva sobre as principais características, funcionalidades e o que difere um sistema embarcado de um computador de propósito geral.
 
@@ -192,7 +187,28 @@ Atividade prática de uso de set de instruções e manipulação de dados em reg
 1 - Manipulação de dados em registradores e endereços de memória por meio de instruções de transferência de dados:
 
 ```
-codigo comentado ...
+ORG 0000h      ; Define a origem do programa como 0000h
+
+main:         ; Define uma label chamada "main"
+
+MOV A, #001h   ; Move o valor hexadecimal 0x01 para o acumulador 'A'
+MOV A, #0      ; Move o valor zero para o acumulador 'A'
+MOV R0, #0ACh  ; Move um valor qualquer '0xAC' para o registrador 'R0'
+MOV B, #0D5h   ; Move o valor hexadecimal '0xD5' para o registrador 'B'
+
+MOV 07Fh, P1   ; Move o conteúdo da porta 'P1' para um endereço de memória RAM específico '0x7F'
+MOV R2, 07Fh   ; Move o conteúdo do endereço de memória especificado anteriormente '0x7F' para o registrador 'R2'
+MOV 0F2h, R2  ; Move o conteúdo de 'R2' para outro endereço de memória RAM '0xF2'
+
+MOV R1, #0F2h  ; Move o endereço de memória específico '0xF2' para o registrador 'R1'
+MOV A, @R1     ; Move o conteúdo do endereço de memória apontado por R1 para o acumulador 'A'
+
+MOV DPTR, #9A5Bh  ; Move o valor hexadecimal '0x9A5B' para o registrador 'DPTR'
+
+NOP           ; Instrução que segura o programa (Não faz nada)
+
+END           ; Fim do programa :)
+
 ```
 
 2 - Manipulação de dados em registradores e endereços de memória por meio de instruções Aritméticas:
