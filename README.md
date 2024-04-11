@@ -7,4 +7,6 @@ Reposítório destinado a armezação das atividades de matéria de microcontrol
 - Renan Ribeiro Machado - 12550066
 - Thallys Simões de Morais Oliveira - 11819827
 
-## Entrega 1 e 2: ![Entrega](./Entrega 1 e 2/README.md)
+## Entrega 1 e 2: 
+
+[Entrega](Entrega 1 e 2/README.md)
