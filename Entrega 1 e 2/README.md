@@ -289,4 +289,28 @@ BLOCK3:
 ### 5 – Verificar sequencialmente o conteúdo das posições de memória de 20h até 23h e incrementar um registrador com a quantidade de valores menores do que #45h contidos nestas posições de memória:
 
 ```
+; New program starts
+    ORG 00h             ; Set the origin at address 00h
+    LJMP main          ; Long jump to the main program label
+
+    ORG 33h             ; Set origin to 33h for the main program
+main:                  ; Main program starts here
+    MOV R0, #20h        ; Initialize R0 with the starting address 20h
+    MOV R1, #0          ; Initialize R1 with 0, this will count the number of values smaller than 45h
+
+LOOP:                   ; Label for the start of the loop
+    MOV A, @R0          ; Move the content of the memory pointed by R0 into A
+    SUBB A, #45h        ; Subtract 45h from A, sets carry if A < 45h
+    JC SKIP_INCREMENT   ; Jump to SKIP_INCREMENT if there was a carry (if A < 45h)
+    INC R1              ; Increment R1 if A >= 45h (no carry from the subtraction)
+
+SKIP_INCREMENT:         ; Label to skip incrementing R1
+    INC R0              ; Increment R0 to point to the next memory location
+    CJNE R0, #24h, LOOP ; Compare R0 with 24h, if not equal, jump back to LOOP
+
+    ; If R0 is 24h, we have checked all locations and the loop is complete
+    NOP                 ; No operation - could be a place to halt if needed
+    SJMP $              ; Hold the program here (infinite loop)
+
+    END                 ; End of the program
 ```
