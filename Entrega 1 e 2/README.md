@@ -175,7 +175,6 @@ FIM:
 ```
 
 > Resposta: O código funciona da seguinte forma: quando pressionada a chave P2.0, apagasse todos os LED. Já quando pressiona-se a chave P2.1, os LEDs P1.0 e P1.2 acendem e o P1.1 apaga. E, no caso da chave P2.2, esta inverte o estado de todos os LEDs, ou seja, o que estiver apagado se acende e vice-versa.
->>>>>>> entrega_1
 
 ## Entrega 2: 
 
