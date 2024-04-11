@@ -184,36 +184,83 @@ Atividade prática de uso de set de instruções e manipulação de dados em reg
 - Apresentar diretamente no documento (mesmo documento da Entrega 1) as linhas de código (programa devidamente comentado e, quando for caso, as respostas às perguntas específicas ao final do programa).
 - As respostas devem seguir a ordem do roteiro. Por exemplo:
 
-1 - Manipulação de dados em registradores e endereços de memória por meio de instruções de transferência de dados:
+### 1 - Manipulação de dados em registradores e endereços de memória por meio de instruções de transferência de dados:
 
 ```
-ORG 0000h      ; Define a origem do programa como 0000h
+ORG 0000h       ; Define o endereço de origem
 
-main:         ; Define uma label chamada "main"
+main:                  ; Label para o início do programa
+        MOV A, #0FFh   ; Move o valor hexadecimal FF para o registrador acumulador (A) (1µs)
+        MOV A, #0      ; Move o valor zero para o registrador acumulador (A) (1µs)
+        MOV R1, #0A5h  ; Move o valor hexadecimal A5 para o registrador R1 no banco 00 (1µs)
+        MOV B, #0F0h   ; Move o valor hexadecimal F0 para o registrador B (2µs)
+        MOV A, P1      ; Move o conteúdo da porta P1 para o registrador acumulador (A) (1µs)
+        MOV 7Fh, A     ; Move o conteúdo do registrador A para o endereço de memória 7Fh (1µs)
+        MOV R2, 7Fh    ; Move o conteúdo da posição de memória 7Fh para o registrador R2 no banco 01 (2µs)
+        MOV 40h, R2    ; Move o conteúdo do registrador R2 para o endereço de memória 40h (2µs)
+        MOV R1, #40h   ; Aponta o endereço de memória 40h como valor para R1 (1µs)
+        MOV A, @R1     ; Move o conteúdo do endereço de memória apontado por R1 para o acumulador (A) (1µs)
+        MOV DPH, #9Ah  ; Move o byte mais significativo do valor 9A5B para DPH (2µs)
+        MOV DPL, #5Bh  ; Move o byte menos significativo do valor 9A5B para DPL (2µs)
+        NOP            ; Gera um atraso de 1µs (1µs)
+        END            ; Indica o fim do programa
+```
+a) O tempo total gasto pelo programa foi de 18µs. <br/> 
+b) O programa teve 15 ciclos de máquina, 1 para cada instrução, com exceção do END que usou 2 ciclos. <br/> 
+c) Quando se moveu uma porta inteira para P1 apareceu o valor FF, e isso ocorreu por conta dos pinos da porta estarem flutuando, e o microprocessador acaba os definindo como 1 (alto). <br/> 
+d) O valor que apareceu no acumulador continua sendo FFh, pois, é o maior valor possível em hexadecimal, então, mesmo quando foi adicionado o valor de 40h, o acumulador mantém o seu valor máximo. <br/> 
+e) Só foi possível mover um valor de 4 dígitos para DPTR pois o mesmo foi dividido em dois comandos de 2 dígitos para DPH e DPL. O maior valor possível que pode ser movido para DPTR é FFFFh, caso seja dividido em 2 comandos como citado acima. <br/> 
 
-MOV A, #001h   ; Move o valor hexadecimal 0x01 para o acumulador 'A'
-MOV A, #0      ; Move o valor zero para o acumulador 'A'
-MOV R0, #0ACh  ; Move um valor qualquer '0xAC' para o registrador 'R0'
-MOV B, #0D5h   ; Move o valor hexadecimal '0xD5' para o registrador 'B'
-
-MOV 07Fh, P1   ; Move o conteúdo da porta 'P1' para um endereço de memória RAM específico '0x7F'
-MOV R2, 07Fh   ; Move o conteúdo do endereço de memória especificado anteriormente '0x7F' para o registrador 'R2'
-MOV 0F2h, R2  ; Move o conteúdo de 'R2' para outro endereço de memória RAM '0xF2'
-
-MOV R1, #0F2h  ; Move o endereço de memória específico '0xF2' para o registrador 'R1'
-MOV A, @R1     ; Move o conteúdo do endereço de memória apontado por R1 para o acumulador 'A'
-
-MOV DPTR, #9A5Bh  ; Move o valor hexadecimal '0x9A5B' para o registrador 'DPTR'
-
-NOP           ; Instrução que segura o programa (Não faz nada)
-
-END           ; Fim do programa :)
+### 2 - Manipulação de dados em registradores e endereços de memória por meio de instruções Aritméticas:
 
 ```
+ORG 00h           ; Define o endereço de origem
 
-2 - Manipulação de dados em registradores e endereços de memória por meio de instruções Aritméticas:
+main:             ; Label de início
+    MOV A, #2     ; Move o valor imediato 2 para o acumulador (A)
+    MOV B, #3     ; Move o valor imediato 3 para o registrador B
+    MOV 30h, #7   ; Move o valor imediato 7 para o endereço de memória 30h
+    ADD A, 30h    ; Soma o conteúdo do endereço de memória 30h ao acumulador (A)
+    SUBB A, #3    ; Decrementa o valor do acumulador (A) em 3 unidades
+    INC B         ; Incrementa o valor do registrador B em 1 
+    SUBB A, B     ; Subtrai o valor do registrador B do valor do acumulador (A)
+    MUL AB        ; Multiplica A por B
+    INC B         ; Incrementa o valor do registrador B em 1 
+    INC B         ; Incrementa o valor do registrador B em 1  mais uma vez
+    DIV AB        ; Divide A por B
+    MOV 20h, A    ; Armazena o conteúdo do registrador A no endereço de memória 20h
+    MOV 21h, B    ; Armazena o conteúdo do registrador B no endereço de memória 21h
+END              ; Encerra o programa
+```
+a) Os respectivos valores de 3 e 4 em binário são 011 e 100, logo, o bit mais significativo do 3 é 0 e do 4 é 1, por isso o valo.  <br/>
+b) A operação resulta em FFh, pois não tem como representar números negativos em hexadecimal, logo, ele trata como se fosse um “ciclo”, tendo o valor 00h como início e FFh como fim, logo se você voltar um passo do início, chega ao fim. <br/>
+
+### 3 - Manipulação de dados em registradores e endereços de memória por meio de instruções lógicas e booleanas: 
 
 ```
-codigo comentado ...
+ORG 00h      ; Endereço de origem do programa
+main:        ; Label main
+    MOV A, #00101101b   ; Move o valor imediato 00101101b para o acumulador (A)
+    MOV B, #11011010b   ; Move o valor imediato 11011010b para o registrador B
+    ANL A, B             ; Realiza a operação lógica AND entre A e B
+    RRC A                ; Rotaciona o conteúdo de A para a direita
+    CPL A                ; Realiza o complemento de A
+    RLC A                ; Rotaciona o conteúdo de A para a esquerda
+    ORL A, B             ; Realiza a operação lógica OR entre A e B
+    XRL A, B             ; Realiza a operação lógica XOR entre A e B
+    SWAP A               ; Realiza a operação de SWAP em A
+
+    SJMP main            ; Salta de volta para a label inicial "main"
+
+END                     ; Finaliza o programa
 ```
 
+### 4- Manipulação de dados em registradores e endereços de memória por meio de instruções de desvio incondicional e condicional:
+
+```
+```
+
+### 5 – Verificar sequencialmente o conteúdo das posições de memória de 20h até 23h e incrementar um registrador com a quantidade de valores menores do que #45h contidos nestas posições de memória:
+
+```
+```
