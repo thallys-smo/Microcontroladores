@@ -12,38 +12,38 @@ De acordo com os Relatórios de Pesquisa sobre o Mercado de Sistemas Embarcados 
 
 - I: Das ferramentas para sistemas embarcados – quais as principais áreas de aplicação dos projetos no mercado brasileiro e o cenário internacional?
 
-> Resposta:
+> Resposta: Internet das Coisas (IoT), Automação e Controle Industrial, Agroindústria e sistema para o campo etc..
 
 - II: Quais as principais ferramentas de comunicação sem fio que estão sendo usadas no Brasil e no mundo?
 
-> Resposta:
+> Resposta: Wifi, Celular (3G/4G), Bluetooth LE/Smart etc..
 
 - III: Quais os principais kits/plataformas de prototipagem usados?
 
-> Resposta:
+> Resposta: Kits com Esp32 e Kits de Desenvolvimento/Avaliação profissionais fornecidos pelo fabricante do processador ou módulo. 
 
 - IV: Dos softwares para sistemas embarcados - qual a principal ferramenta de codificação, principal sistema de controle de versão, e principal linguagem de programação?
 
-> Resposta:
+> Resposta: Visual Studio Code, GitHub e C/C++.
 
 - V: Dos microprocessadores/microcontroladores – quais os fabricantes/modelos mais citados na pesquisa?
 
-> Resposta:
+> Resposta: A Esp32 e STM32 são bastante utilizados, sendo fabricados pelas empresas Expressif e STMicroelectron. 
 
 ### Questão 3: 
 Recorra ao exemplo do microcontrolador aplicado ao controle de um elevador que foi apresentado em aula, disponível nas transparências do Cap. 2. Quais as vantagens de se utilizar um microcontrolador para aquele tipo de aplicação e qual deve ser o “perfil” de um microcontrolador ideal para aquela aplicação do elevador em termos de capacidade da CPU (baixa, média ou alta), quantidade de bits no barramento, e precisão no tratamento das informações (operação somente com inteiros ou ponto flutuante?)
 
-> Resposta:
+> Resposta: 
 
 ### Questão 4: 
 Quanto às portas paralelas de um microcontrolador:
 
 ( ) São somente de entrada. <br/> 
 ( ) São somente de saída.  <br/> 
-( ) Cada palavra (A, B, C, P1, P2, P3…) pode ser configurada como entrada ou saída. <br/> 
+() Cada palavra (A, B, C, P1, P2, P3…) pode ser configurada como entrada ou saída. <br/> 
 ( ) Cada bit pode ser configurado como entrada ou saída. <br/> 
-( ) Cada palavra (A, B, C... P1, P2, P3…) pode ser configurada como entrada, saída ou bidirecional. <br/> 
-( ) Cada bit pode ser configurado como entrada, saída ou bidirecional. <br/> 
+(x) Cada palavra (A, B, C... P1, P2, P3…) pode ser configurada como entrada, saída ou bidirecional. <br/> 
+(x) Cada bit pode ser configurado como entrada, saída ou bidirecional. <br/> 
 
 ### Questão 5: 
 Assinale V para verdadeiro e F para falso nas afirmações abaixo.
@@ -73,13 +73,11 @@ Indique quais afirmativas se aplicam a uma instrução CISC e quais a uma instru
 ➔ CISC - Tempo de execução das instruções depende da frequência do clock. <br/> 
 
 ### Questão 7: 
-Abaixo é apresentado o diagrama de um microcontrolador. Qual a arquitetura utilizada e como
-chegamos a essa conclusão? Quantas portas I/O bidirecional e quantas linhas (bits/pinos) são
-endereçados de forma individual neste microcontrolador, com base no diagrama abaixo?
+Abaixo é apresentado o diagrama de um microcontrolador. Qual a arquitetura utilizada e como chegamos a essa conclusão? Quantas portas I/O bidirecional e quantas linhas (bits/pinos) são endereçados de forma individual neste microcontrolador, com base no diagrama abaixo?
 
 ![Questao_7](./img/questao_7.png)
 
-> Resposta: 
+> Resposta: O diagrama é do 8051, cujo possui arquitetura Harvard e CISC, isso é evidenciado na separação entre a memória de dados e memória de programa. Continuando, possui 4 pinos I/O biredicionais (P0, P1, P2, P3) de 8 bits, totalizando 32 linhas de entrada/saída. 
 
 ### Questão 8:
 No simulador EdSim51, digite e execute (clicando em “Assm”) as instruções abaixo.
@@ -107,24 +105,21 @@ mesma.
 > Resposta: A primeira instrução gasta 1us, já a segunda, 2us. Isso se dá pois o acumulador A é conectado à ALU e outras unidades funcionais e, assim, acessá-lo envolve caminhos mais curtos e menos multiplexadores. Já mover para ACC envolve o acesso de memótia, o que gasta mais ciclos de máquina. 
 
 ### Questão 9: 
-A Figura abaixo mostra um microcontrolador genérico de 8 bits com 4 registradores internos à
-CPU, os quais são: Instruction Register (IR), Program Counter (PC), Accumulator (ACC) e
-Data Pointer (DPTR). Baseado na Figura abaixo, responda às questões com verdadeiro (V) ou
-Falso (F). 
+A Figura abaixo mostra um microcontrolador genérico de 8 bits com 4 registradores internos à CPU, os quais são: Instruction Register (IR), Program Counter (PC), Accumulator (ACC) e Data Pointer (DPTR). Baseado na Figura abaixo, responda às questões com verdadeiro (V) ou Falso (F). 
 
 ![Questao_9](./img/questao_9.png)
 
-( ) Trata-se de um microcontrolador de arquitetura Harvard. <br/> 
-( ) A memória EEPROM é de 4Kbytes e armazena as instruções que comandam o
+(V) Trata-se de um microcontrolador de arquitetura Harvard. <br/> 
+(V) A memória EEPROM é de 4Kbytes e armazena as instruções que comandam o
 microcontrolador. <br/> 
-( ) A memória SRAM é de 512 bytes e armazena dados voláteis. <br/> 
-( ) O registrador IR tem a função de armazenar a instrução lida da memória SRAM. <br/> 
-( ) Para esse microcontrolador, o registrador IR deve ser de 8 bits. <br/> 
-( ) O registrador PC armazena o endereço da instrução lida da memória EEPROM. <br/> 
-( ) Para esse microcontrolador, o registrador PC deve ser de 10 bits. <br/> 
-( ) Para esse microcontrolador, o registrador ACC deve ser de 8 bits. <br/> 
-( ) O registrador DPTR é um ponteiro que aponta para a última instrução lida da memória. <br/> 
-( ) Para esse microcontrolador, o registrador DPTR deve ser de 10 bits. <br/> 
+(F) A memória SRAM é de 512 bytes e armazena dados voláteis. <br/> 
+(F ) O registrador IR tem a função de armazenar a instrução lida da memória SRAM. <br/> 
+(V) Para esse microcontrolador, o registrador IR deve ser de 8 bits. <br/> 
+(V) O registrador PC armazena o endereço da instrução lida da memória EEPROM. <br/> 
+(F) Para esse microcontrolador, o registrador PC deve ser de 10 bits. <br/> 
+(T) Para esse microcontrolador, o registrador ACC deve ser de 8 bits. <br/> 
+(F) O registrador DPTR é um ponteiro que aponta para a última instrução lida da memória. <br/> 
+(T) Para esse microcontrolador, o registrador DPTR deve ser de 10 bits. <br/> 
 
 ### Questão 10: 
 Responder com Verdadeiro (V) ou Falso (F) às seguintes afirmações.
