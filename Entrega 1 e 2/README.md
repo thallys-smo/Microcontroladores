@@ -286,6 +286,21 @@ BLOCK3:
     END            ; Close the program
 ```
 
+Vamos descrever o comportamento deste programa: <br/>
+
+1. Inicialização: O programa inicia no endereço 00h e salta imediatamente para o rótulo MAIN, que está localizado no endereço 33h. <br/>
+2. Rotina Principal: Em MAIN, o acumulador A é zerado e R0 é carregado com um valor específico. <br/>
+3. Lógica Condicional: A primeira verificação condicional no BLOCO1 decide o fluxo com base no valor de A. Se A for zero, vai para o BLOCO2; caso contrário, vai para o BLOCO3. <br/>
+4. Operação de atraso: A instrução NOP é usada para representar um atraso de 1 µs. <br/>
+5. Bloco2: Se A for zero, BLOCO2 transfere o valor de R0 para A e depois volta para BLOCO1. <br/>
+6. Loop Block3: Se A não for zero, BLOCK3 decrementa R0 e faz um loop sobre si mesmo, desde que R0 não seja zero. Quando R0 for zero, ele volta para MAIN. <br/>
+
+Para depurar este programa, você seguiria as instruções e monitoraria os valores dos registradores, especialmente A e R0, para garantir que os saltos estivessem ocorrendo conforme o esperado com base nas verificações condicionais. <br/>
+
+Finalmente, o programa seria salvo em um arquivo, normalmente com extensão .asm, usando o ambiente de desenvolvimento ou editor de texto com o qual você está trabalhando.<br/>
+
+Observe que algumas linguagens Assembly podem usar instruções diferentes para os saltos, e a instrução NOP pode não fornecer um atraso exato de 1 µs, a menos que seja calibrada em relação à velocidade de clock do microcontrolador específico.<br/>
+
 ### 5 – Verificar sequencialmente o conteúdo das posições de memória de 20h até 23h e incrementar um registrador com a quantidade de valores menores do que #45h contidos nestas posições de memória:
 
 ```
@@ -314,3 +329,13 @@ SKIP_INCREMENT:         ; Label to skip incrementing R1
 
     END                 ; End of the program
 ```
+
+Depurando o programa: <br/>
+
+1. Atribua manualmente valores aos locais de memória de 20h a 23h, sendo alguns valores maiores e outros menores que 45h. <br/>
+2. Execute o programa passo a passo, observando o conteúdo de R0, A e R1, e observando o sinalizador de carry no PSW (Program Status Word). <br/>
+3. A cada iteração do loop, certifique-se de que R1 seja incrementado somente quando o valor em A for 45h ou superior (o que não produz carry). <br/>
+4. Quando R0 atingir 24h, o loop deverá terminar e R1 deverá conter a contagem dos valores de memória maiores ou iguais a 45h. <br/>
+
+
+Você verificaria então se o valor em R1 corresponde ao número de locais de memória contendo valores menores que 45h. Se isso acontecer, o programa funciona corretamente. Caso contrário, há um erro na lógica do programa que precisa ser resolvido. Finalmente, o programa seria salvo em um arquivo com um nome adequado e extensão .asm.
