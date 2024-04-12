@@ -33,7 +33,7 @@ De acordo com os Relatórios de Pesquisa sobre o Mercado de Sistemas Embarcados 
 ### Questão 3: 
 Recorra ao exemplo do microcontrolador aplicado ao controle de um elevador que foi apresentado em aula, disponível nas transparências do Cap. 2. Quais as vantagens de se utilizar um microcontrolador para aquele tipo de aplicação e qual deve ser o “perfil” de um microcontrolador ideal para aquela aplicação do elevador em termos de capacidade da CPU (baixa, média ou alta), quantidade de bits no barramento, e precisão no tratamento das informações (operação somente com inteiros ou ponto flutuante?)
 
-> Resposta: 
+> Resposta: Controlar um elevador é uma tarefa relativamente simples, visto que, ele possui poucas funções, tais como subir e descer para o andar selecionado. Dito isso, é cabível o uso de microcontroladores devido ao seu baixo custo. Quanto ao perfil dele, não é necessária uma CPU de alta capacidade, uma com baixa já serve, devido a baixa complexidade do problema, portanto, 7 bits de barramento são suficientes. Por fim, o microcontrolador poderá trabalhar apenas com números inteiros, visto que, não existe andares como 3,5 ou 4,3.
 
 ### Questão 4: 
 Quanto às portas paralelas de um microcontrolador:
