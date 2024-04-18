@@ -6,29 +6,28 @@ SETB P3.4   ;selecionar A1=1
 ; A0=A1=1 seleciona o display 3 (o mais a esquerda)
 				
 Init:
-MOV R3,#00Ah	
+MOV R3,#00Ah 	;contador
 
 Main:
 MOV DPTR,#display
 
-Back:
+Contagem:
 CLR A
 MOVC A,@A+DPTR
 MOV P1,A
 ACALL Delay
 INC DPTR
-DJNZ R3,Back
+DJNZ R3,Contagem
 SJMP Init
 
 Delay: 		
-MOV	R0, #05h  ; Outer loop
+MOV	R1, #100
 
-Again: 		
-MOV	R1, #0BCh  ; inner loop
+Loop:
+MOV R0, #250
+DJNZ R0, $
+DJNZ R1, Loop
 
-Here:  		
-DJNZ R1, Here   ; jump if r1 not 0
-DJNZ R0, Again  ; jump if r0 not 0
 RET
 			
 Org 0200h
