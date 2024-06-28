@@ -102,8 +102,7 @@ void moveServo() {
 ```
 
 - **Vídeo:**
-
-
+[Gravação de tela de 28-06-2024 00:59:45.webm](https://github.com/thallys-smo/Microcontroladores/assets/72418094/6f09cebb-d1b6-4359-9476-0e08a887984b)
 
 ## Programa 2: 
 
