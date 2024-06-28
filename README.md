@@ -12,3 +12,4 @@ Reposítório destinado a armezação das atividades de matéria de microcontrol
 - [Entrega 1 e 2](/Entrega%201%20e%202/README.md) <br>
 - [Entrega 3](/Entrega%203/Entrega%203.md) <br>
 - [Entreta 4](/Entrega%204/README.md) <br>
+- [Entrega Final](/Entrega%20Final/README.md)
