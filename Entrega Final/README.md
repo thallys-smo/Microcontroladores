@@ -115,14 +115,16 @@ void moveServo() {
 
 ### Resolução: 
 
+- **Circuto:**
+
+<div align="center">
+        <img src="./img/LED_RGB_Funcional.jpeg" alt="LED RGB" width="428"/>
+      </div>
+
 Em sala de aula, elaboramos o seguinte código [main.cpp](/Entrega%20Final/Projeto%202%20-%20LED%20RGB/src/main.cpp), ele foi desenvolvido dentro do ambiente do PlatformIO, o projeto encotra-se na pasta abaixo.
 
 - [Projeto 2](/Entrega%20Final/Entrega%20Final/). Para acessar o código, basta ir a pasta **src**, dentro dela encontra-se o [main.cpp](/Entrega%20Final/Projeto%202%20-%20LED%20RGB/src/main.cpp). 
 - Entrentanto, caso deseje a versão **.ino**, ela se encontra dentro da pasta **Arduino**, segue o arquivo [Projeto_2_LED_RGB.ino](/Entrega%20Final/Arduino/Projeto_2_LED_RGB.ino).
-
-<table>
-  <tr>
-    <td>
 
 ```cpp
 #include <Arduino.h>
@@ -173,11 +175,4 @@ void loop() {
   delay(100);
 }
 ```
-</td>
-    <td>
-      <div align="center">
-        <img src="./img/LED_RGB_Funcional.jpeg" alt="LED RGB" width="428"/>
-      </div>
-    </td>
-  </tr>
-</table>
+
