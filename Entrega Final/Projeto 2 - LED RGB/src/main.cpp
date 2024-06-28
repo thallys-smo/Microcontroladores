@@ -13,9 +13,8 @@ int increment = 1; // Declaração da variável incremento
 
 void setup() {
   Serial.begin(115200); // Configura a comunicação serial com uma taxa de transmissão de dados de 115200 bits por segundo.
-  // Dabble.begin("MyEsp32-Pedro-Thallys-Renan"); // Define o nome do Bluetooth do dispositivo
-
-  // Inicializar as saídas PWM para controle do LED
+  
+    // Inicializar as saídas PWM para controle do LED
   pinMode(R, OUTPUT);
   pinMode(G, OUTPUT);
   pinMode(B, OUTPUT);

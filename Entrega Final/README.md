@@ -25,53 +25,67 @@
 
 ```cpp
 #include <ESP32Servo.h>
-#include <Arduino.h>
 
-const int servoPin = 18;        // Servo signal pin
-const int buttonStartPin = 4;   // Start button pin
-const int buttonStopPin = 2;    // Stop button pin
-const int buttonDelay = 50;     // Delay to debounce the button (in milliseconds)
-const int servoIncrement = 1;   // Angle increment for each iteration
-const int servoDelayUp = 100;   // Delay between angle increments when moving up (in milliseconds)
-const int servoDelayDown = 200; // Delay between angle increments when moving down (in milliseconds)
-const int servoWaitTime = 1000; // Wait time at 180 degrees (in milliseconds)
-
+// Servo
+#define SPWM 32
 Servo servo;
-int currentAngle = 0;           // To track the current angle of the servo
-bool startPressed = false;      // Flag to track if the start button has been pressed
-bool stopPressed = false;       // Flag to track if the stop button has been pressed
+
+// Buttons
+#define ButtonStart 4
+#define ButtonStop 2
+
+// Variables
+int currentAngle = 0;            // To track the current angle of the servo
+bool startPressed = false;       // Flag to track if the start button has been pressed
+bool stopPressed = false;        // Flag to track if the stop button has been pressed
+const int buttonDelay = 50;      // Delay to debounce the button (in milliseconds)
+const int servoDelayUp = 100;    // Delay between angle increments when moving up (in milliseconds)
+const int servoDelayDown = 200;  // Delay between angle increments when moving down (in milliseconds)
+const int servoWaitTime = 1000;  // Wait time at 180 degrees (in milliseconds)
+
+void IRAM_ATTR startButtonPressed() {
+  startPressed = true;
+  stopPressed = false;
+}
+
+void IRAM_ATTR stopButtonPressed() {
+  stopPressed = true;
+  startPressed = false;
+}
 
 void setup() {
-  servo.attach(servoPin, 500, 2500); // Attach the servo to the pin with min and max pulse width
-  pinMode(buttonStartPin, INPUT_PULLUP); // Set start button pin as input with pull-up
-  pinMode(buttonStopPin, INPUT_PULLUP);  // Set stop button pin as input with pull-up
-  servo.write(currentAngle);             // Set initial position to 0 degrees
+  Serial.begin(115200);
+
+  // Set button pins as input with pull-up resistors
+  pinMode(ButtonStart, INPUT_PULLUP);
+  pinMode(ButtonStop, INPUT_PULLUP);
+
+  // Attach interrupts to the button pins
+  attachInterrupt(digitalPinToInterrupt(ButtonStart), startButtonPressed, FALLING);
+  attachInterrupt(digitalPinToInterrupt(ButtonStop), stopButtonPressed, FALLING);
+
+  // Attach the servo to the pin with min and max pulse width
+  servo.attach(SPWM, 500, 2500);
+  servo.write(currentAngle);  // Set initial position to 0 degrees
 }
 
 void loop() {
-  if (digitalRead(buttonStartPin) == LOW && !startPressed) {
-    delay(buttonDelay); // Debounce delay
-    if (digitalRead(buttonStartPin) == LOW) { // Confirm the button press
-      startPressed = true;
-      stopPressed = false;
-      moveServo();
-    }
+  // Control servo movement based on the flags set by the buttons
+  if (startPressed && !stopPressed) {
+    moveServo();
   }
 
-  if (digitalRead(buttonStopPin) == LOW && !stopPressed) {
-    delay(buttonDelay); // Debounce delay
-    if (digitalRead(buttonStopPin) == LOW) { // Confirm the button press
-      stopPressed = true;
-      startPressed = false;
-      servo.detach(); // Detach the servo to stop it
-    }
+  // If stop button is pressed, stop the servo
+  if (stopPressed) {
+    servo.detach(); // Detach the servo to stop it
+    stopPressed = false; // Reset the stop flag
   }
 }
 
 void moveServo() {
   // Move the servo from 0° to 180°
-  while (currentAngle < 180 && startPressed && !stopPressed) {
-    currentAngle += servoIncrement;
+  for (currentAngle = 0; currentAngle <= 180; currentAngle++) {
+    if (stopPressed) return;  // Exit if stop button is pressed
     servo.write(currentAngle);
     delay(servoDelayUp);
   }
@@ -79,21 +93,18 @@ void moveServo() {
   delay(servoWaitTime); // Wait for 1 second at 180°
 
   // Move the servo from 180° back to 0°
-  while (currentAngle > 0 && startPressed && !stopPressed) {
-    currentAngle -= servoIncrement;
+  for (currentAngle = 180; currentAngle >= 0; currentAngle--) {
+    if (stopPressed) return;  // Exit if stop button is pressed
     servo.write(currentAngle);
     delay(servoDelayDown);
   }
-
-  // Reset the servo position to 0° and reattach it for the next cycle
-  currentAngle = 0;
-  servo.write(currentAngle);
-  if (startPressed && !stopPressed) {
-    delay(servoDelayDown); // Small delay before the next cycle
-    moveServo(); // Recursively call the function to repeat the process
-  }
 }
 ```
+
+- **Vídeo:**
+
+
+
 ## Programa 2: 
 
 - **Descrição:** Conectar um LED RGB (catodo comum) na GPIO placa conforme esquemático ilustrado na Figura abaixo, utilizando resistores de 220 ohms, jumpers e protoboard. Tentar utilizar o App Dabble para comunicação Bluetooth com a ESP32 (ou algum, outro App alternativo de comunicação Bluetooth)
