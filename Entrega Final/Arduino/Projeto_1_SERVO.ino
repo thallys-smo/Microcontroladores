@@ -1,4 +1,7 @@
 #include <ESP32Servo.h>
+#include <LiquidCrystal_I2C.h>
+
+LiquidCrystal_I2C lcd(0x27,16,2); //criando projeto cahmado lcd como seu tamanho
 
 // Servo
 #define SPWM 32
@@ -29,6 +32,8 @@ void IRAM_ATTR stopButtonPressed() {
 
 void setup() {
   Serial.begin(115200);
+  lcd.init();
+  lcd.backlight();
 
   // Set button pins as input with pull-up resistors
   pinMode(ButtonStart, INPUT_PULLUP);
@@ -41,6 +46,13 @@ void setup() {
   // Attach the servo to the pin with min and max pulse width
   servo.attach(SPWM, 500, 2500);
   servo.write(currentAngle);  // Set initial position to 0 degrees
+
+  lcd.setCursor(2,0);
+  lcd.print("Projeto Servo e Esp32");
+  lcd.setCursor(0,1);
+  lcd.print("Microcontroladores");
+  delay(4000); 
+  lcd.clear(); 
 }
 
 void loop() {
@@ -53,7 +65,14 @@ void loop() {
   if (stopPressed) {
     servo.detach(); // Detach the servo to stop it
     stopPressed = false; // Reset the stop flag
+    lcd.setCursor(2,0);
+    lcd.print("Sistema Parado");
+    lcd.setCursor(0,1);
+    lcd.print("Microcontroladores");
+    delay(4000); 
+    lcd.clear();
   }
+  
 }
 
 void moveServo() {
@@ -62,7 +81,13 @@ void moveServo() {
     if (stopPressed) return;  // Exit if stop button is pressed
     servo.write(currentAngle);
     delay(servoDelayUp);
+    lcd.setCursor(2,0);
+    lcd.print("Direita");
+    lcd.setCursor(0,1);
+    lcd.print("Microcontroladores");
   }
+
+  lcd.clear();
 
   delay(servoWaitTime); // Wait for 1 second at 180°
 
@@ -71,5 +96,12 @@ void moveServo() {
     if (stopPressed) return;  // Exit if stop button is pressed
     servo.write(currentAngle);
     delay(servoDelayDown);
+    lcd.setCursor(2,0);
+    lcd.print("Esquerda");
+    lcd.setCursor(0,1);
+    lcd.print("Microcontroladores");
+    // 
   }
+
+  lcd.clear();
 }
