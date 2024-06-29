@@ -136,9 +136,7 @@ void moveServo() {
 
 - **Vídeo:**
 
-https://github.com/thallys-smo/Microcontroladores/assets/72418094/d609a376-07b5-427b-b585-dbcd5c60b4d2
-
-
+https://github.com/thallys-smo/Microcontroladores/assets/72418094/e37a9293-51b7-4a91-9a99-07e60af21e43
 
 ## Programa 2: 
 
