@@ -228,4 +228,7 @@ void loop() {
 }
 
 ```
+- **Vídeo:**
+
+https://github.com/thallys-smo/Microcontroladores/assets/72418094/85f845ba-8554-47c5-a828-12386270ced7
 
